@@ -4,6 +4,8 @@ Forked from https://github.com/shashankprasanna/kubeflow-pipelines-sagemaker-exa
 
 Converted to Tensorflow 2
 
+Currently blocked by https://github.com/aws/aws-sdk/issues/117
+
 ![Demo_pipeline](pipeline.png)
 
 ### Blog post: https://aws.amazon.com/blogs/machine-learning/introducing-amazon-sagemaker-components-for-kubeflow-pipelines/
