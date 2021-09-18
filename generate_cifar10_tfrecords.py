@@ -32,7 +32,7 @@ from six.moves import cPickle as pickle
 from six.moves import xrange  # pylint: disable=redefined-builtin
 import tensorflow as tf
 
-tf.logging.set_verbosity(tf.logging.ERROR)
+tf.compat.v1.logging.set_verbosity(tf.compat.v1.logging.ERROR)
 if type(tf.contrib) != type(tf): tf.contrib._warning = None
 
 CIFAR_FILENAME = 'cifar-10-python.tar.gz'
@@ -66,7 +66,7 @@ def _get_file_names():
 
 
 def read_pickle_from_file(filename):
-  with tf.gfile.Open(filename, 'rb') as f:
+  with tf.io.gfile.GFile(filename, 'rb') as f:
     if sys.version_info >= (3, 0):
       data_dict = pickle.load(f, encoding='bytes')
     else:
@@ -77,7 +77,7 @@ def read_pickle_from_file(filename):
 def convert_to_tfrecord(input_files, output_file):
   """Converts a file to TFRecords."""
   print('Generating %s' % output_file)
-  with tf.python_io.TFRecordWriter(output_file) as record_writer:
+  with tf.io.TFRecordWriter(output_file) as record_writer:
     for input_file in input_files:
       data_dict = read_pickle_from_file(input_file)
       data = data_dict[b'data']

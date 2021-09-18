@@ -26,17 +26,17 @@ def single_example_parser(serialized_example):
     # See http://www.cs.toronto.edu/~kriz/cifar.html for a description of the
     # input format.
     features = tf.io.parse_single_example(
-        serialized_example,
+        serialized=serialized_example,
         features={
             'image': tf.io.FixedLenFeature([], tf.string),
             'label': tf.io.FixedLenFeature([], tf.int64),
         })
-    image = tf.decode_raw(features['image'], tf.uint8)
+    image = tf.io.decode_raw(features['image'], tf.uint8)
     image.set_shape([DEPTH * HEIGHT * WIDTH])
 
     # Reshape from [depth * height * width] to [depth, height, width].
     image = tf.cast(
-        tf.transpose(tf.reshape(image, [DEPTH, HEIGHT, WIDTH]), [1, 2, 0]),
+        tf.transpose(a=tf.reshape(image, [DEPTH, HEIGHT, WIDTH]), perm=[1, 2, 0]),
         tf.float32)
     label = tf.cast(features['label'], tf.int32)
     

@@ -1,6 +1,8 @@
 ## Examples for using Amazon SageMaker components in Kubeflow Pipelines
 
+Forked from https://github.com/shashankprasanna/kubeflow-pipelines-sagemaker-examples
 
+Converted to Tensorflow 2
 
 ![Demo_pipeline](pipeline.png)
 
